@@ -8,4 +8,4 @@ headers = {
 
 site = requests.get(url, headers=headers)
 soup = BeautifulSoup(site.content, "html.parser")
-chuteiras = soup.find_all 
+chuteiras = soup.find_all("div", class_='item-card__description')
