@@ -8,8 +8,9 @@ headers = {
 
 site = requests.get(url, headers=headers)
 soup = BeautifulSoup(site.content, "html.parser")
-chuteiras = soup.find_all("div", class_='item-card__description')
+chuteiras =  soup.find_all("div", class_='item-card__description')
 ultima_pagina = soup.find('span', class_='last')
 
-marca = chuteiras.find(class_= 'item-card__description__product-name')
+chuteira = chuteiras[0]
+marca = chuteiras.find(class_='item-card__description__product-name')
 print(marca)
