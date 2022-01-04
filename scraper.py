@@ -1,16 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://www.netshoes.com.br/chuteiras/masculino?mi=hm_ger_mntop_H-CAL-calcados-chuteiras&psn=Menu_Top'
+url = 'https://www.kabum.com.br/hardware/ssd-2-5?page_number=1&page_size=20&facet_filters=&sort=most_searched'
 
 headers = {
     'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
 
 site = requests.get(url, headers=headers)
 soup = BeautifulSoup(site.content, "html.parser")
-chuteiras =  soup.find_all("div", class_='item-card__description')
-ultima_pagina = soup.find('span', class_='last')
+ssd =  soup.find_all("div", class_='sc-ctqQKy gLgKBM')
+ultima_pagina = soup.find('span', class_='Page 42')
 
-chuteira = chuteiras[0]
-marca = chuteiras.find(class_='item-card__description__product-name')
+marca = ssd.find(class_='sc-kHOZwM brabbc sc-fHeRUh jwXwUJ nameCard')
 print(marca)
