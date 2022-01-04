@@ -1,15 +1,16 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
 
-url = 'https://www.kabum.com.br/hardware/ssd-2-5?page_number=1&page_size=20&facet_filters=&sort=most_searched'
+URL = 'https://www.brasiltronic.com.br/camera-digital-canon-dslr-eos-rebel-sl3-com-lente-ef-s-18-55mm-f-4-5-6-is-stm-p1330537'
 
-headers = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"}
+headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'}
 
-site = requests.get(url, headers=headers)
-soup = BeautifulSoup(site.content, "html.parser")
-ssd =  soup.find_all("div", class_='sc-ctqQKy gLgKBM')
-ultima_pagina = soup.find('span', class_='Page 42')
+site = requests.get(URL, headers=headers)
 
-marca = ssd.find(class_='sc-kHOZwM brabbc sc-fHeRUh jwXwUJ nameCard')
-print(marca)
+soup = BeautifulSoup(site.content,'html.parser')
+
+title = soup.find('h1', class_ = 'name').get_text().strip()
+
+price = soup.find('strong', class_ = 'sale-price').get_text().strip()
+
+print(title , price)
